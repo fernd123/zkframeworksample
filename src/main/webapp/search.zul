@@ -1,0 +1,15 @@
+<?page title="Search Car" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+
+	<borderlayout >
+		<north border="normal" style="overflow: visible;">
+			<include src="menu.zul" />
+		</north>
+		
+		<center border="none" style="overflow: visible;">
+			<include src="searchList.zul" />
+		</center>
+	</borderlayout>
+
+</zk>

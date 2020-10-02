@@ -1,0 +1,64 @@
+<?page title="Search Car" contentType="text/html;charset=UTF-8"?>
+
+<window title="Search" width="100%" border="normal"
+	apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('com.foo.mywebapp.car.SearchListViewModel')"
+	form="@id('fx')">
+	
+	<style>.error{color:white; background-color:red;}</style>
+
+	<hbox align="center">
+		Keyword:
+		<textbox value="@bind(vm.keyword)"/>
+		<button id="searchButton" label="Search" onClick="@command('search')"
+			image="/img/search.png" />
+	</hbox>
+
+	<listbox id="carListbox" rows="4" model="@bind(vm.carList)" selectedItem="@bind(vm.selectedCar)" style="margin-top:10px"
+		emptyMessage="No car found in the result">
+		<listhead>
+			<listheader label="Model" />
+			<listheader label="Make" />
+			<listheader label="Price" width="20%" />
+			<listheader label="Actions" width="20%" />
+
+		</listhead>
+		<template name="model" var="car">
+			<listitem>
+				<listcell label="@bind(car.model)"></listcell>
+				<listcell label="@bind(car.make)"></listcell>
+				<listcell>
+					$
+					<label value="@bind(car.price)" />
+				</listcell>
+				<listcell>
+					<hlayout>
+						<button label="Edit" width="100px" onClick="@command('edit', id=car.id)" />
+						<button class="error" label="Delete"
+							onClick="@command('delete', id=car.id)"
+							width="100px" />
+					</hlayout>
+				</listcell>
+
+			</listitem>
+		</template>
+	</listbox>
+
+	<hbox style="margin-top:20px" visible="@bind(not empty vm.selectedCar)">
+        <image src="@bind(vm.selectedCar.preview)" style="padding:10px" />
+        <vbox>
+            <hlayout>
+                Model : <label value="@bind(vm.selectedCar.model)" style="font-weight:bold"/>
+            </hlayout>
+            <hlayout>
+                Make : <label value="@bind(vm.selectedCar.make)" style="font-weight:bold"/>
+            </hlayout>
+            <hlayout>
+                Price : 
+                <span>$<label value="@bind(vm.selectedCar.price)" style="font-weight:bold"/></span>
+            </hlayout>
+            <label value="@bind(vm.selectedCar.description)" />
+        </vbox>
+    </hbox>
+
+</window>

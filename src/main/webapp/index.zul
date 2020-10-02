@@ -1,0 +1,8 @@
+<zk>
+	<window border="normal" title="My Cars App">
+		<vlayout>
+			<a href="search.zul">search.zul</a>
+			<a href="addcar.zul">addcar.zul</a>
+		</vlayout>
+	</window>
+</zk>

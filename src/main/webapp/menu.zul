@@ -1,0 +1,22 @@
+<?page title="Menu" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<hbox align="center" apply="com.foo.mywebapp.menu.MenuController">
+		<menubar id="menubar" hflex="min">
+			<custom-attributes org.zkoss.zul.image.preload="true" />
+			<menu label="Cars" image="/img/car16x16.png">
+				<menupopup>
+
+					<menuitem image="/img/searchcar16x16.png"
+						label="Search" id="searchList" />
+
+					<menuitem image="/img/newcar16x16.png" label="New"
+						id="addCar" />
+
+					<menuitem label="Exit" image="/img/exit16x16.png"
+						id="exit" />
+
+				</menupopup>
+			</menu>
+		</menubar>
+	</hbox>
+</zk>

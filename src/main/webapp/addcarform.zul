@@ -1,0 +1,63 @@
+<?page title="New Car" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+	<style>.error {color:red;}</style>
+
+	<window title="New Car" border="normal">
+
+		<div apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm') @init('com.foo.mywebapp.car.CarFormViewModel')"
+			validationMessages="@id('vmsgs')"
+			form="@id('fx') @load(vm.car) @save(vm.car, before='submit') @validator('com.foo.mywebapp.car.CarFormValidator')">
+			<grid>
+
+				<rows>
+					<row>
+						<label value="Model" width="150px" />
+						<hlayout>
+							<textbox value="@bind(fx.model)" />
+							<label class="error"
+								value="@load(vmsgs['model'])" />
+						</hlayout>
+
+					</row>
+					<row>
+						<label value="Make" width="150px" />
+						<hlayout>
+							<textbox value="@bind(fx.make)" />
+							<label class="error"
+								value="@load(vmsgs['make'])" />
+						</hlayout>
+					</row>
+					<row>
+						<label value="Description" width="150px" />
+						<hlayout>
+							<textbox value="@bind(fx.description)" />
+							<label class="error"
+								value="@load(vmsgs['description'])" />
+						</hlayout>
+					</row>
+					<row>
+						<label value="Price" width="150px" />
+						<hlayout>
+							<intbox value="@bind(fx.price)" />
+							<label class="error"
+								value="@load(vmsgs['price'])" />
+						</hlayout>
+					</row>
+
+					<row>
+						<cell colspan="2" style="text-align:center">
+							<vlayout>
+								<label visible="@load(empty vmsgs)"
+									value="@load(empty vmsgs ? 'Form successfully submitted!' : '', before='submit')" />
+								<button label="Submit"
+									onClick="@command('submit')" width="100px" />
+							</vlayout>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</div>
+	</window>
+</zk>
